@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>LE-LO</title>
+
+
+</head>
+<body>
+
+    <section>
+    
+    
+    
+ <!-- Start Slider -->
+   <div class="index">
+   
+       <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner "style="margin-top: 14px;">
+    <div class="carousel-item active mt-5">
+      <img src="img/slides/slide1.png" class="d-block w-100" alt="..." height="330px" >
+    </div>
+    <div class="carousel-item mt-5">
+      <img src="img/slides/slide2.png" class="d-block w-100" alt="..." height="330px">
+    </div>
+    <div class="carousel-item mt-5">
+      <img src="img/slides/slide3.png" class="d-block w-100" alt="..." height="330px">
+    </div>
+    <div class="carousel-item mt-5">
+      <img src="img/slides/slide4.png" class="d-block w-100" alt="..." height="330px">
+    </div>
+     <div class="carousel-item mt-5">
+      <img src="img/slides/slide5.png" class="d-block w-100" alt="..." height="330px">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- End Slider -->
+
+<!-- Start Main Page module1 -->
+  <div class="bg-product">
+    <div class="container">
+      <div class="row">
+      
+      <!-- Start Category module -->
+      
+         <p class="text-center fs-4 fw-bold ">Category</p>
+        
+         <div class="col-md-2 mt-4 "th:each="c:${category}">
+           <div class="card rounded-circle shadow-sm p-3 mb-3  rounded bg-white"style="height: 220px;">
+             <div class="card-body text-center">
+             
+             <a th:href="@{'/products?category='+${c.name}}" class="text-decoration-none" >
+               <img  alt="" th:src="@{'img/category_img/'+${c.imgName}}"  width="60%" height="120px" style="margin-top: 4px;"><br>
+               <p class="text-center fw-bold" style="color: black;overflow: hidden;width: 100%;height: 50px">[[${c.name}]]</p>
+             </a>
+             </div>
+           </div>
+         </div>
+          
+   
+ <!-- End category module -->
+ 
+ <!-- Start latest product module -->
+ 
+ <div class="container-fluid  bg-light txt-col">
+   <div class="row w-100">
+     <p class="text-center fs-4 fw-bold ">🛍️ Latest Products</p>
+      
+        <div class="col-md-2 p-3" th:each="p:${products}">
+          <div class="card card-height shadow-sm p-3   rounded bg-white" style="height: 290px;">
+            <div class="card-body text-center " >
+            
+            <a  th:href="@{'/product/'+${p.id}}" class="text-decoration-none">
+              <img  alt="" th:src="@{'img/product_img/'+${p.image}}" class="card-img " width="75%" height="140px">
+               <p class="text-center fs-7" style="color: black;overflow: hidden;width: 100%;height: 24px">[[${p.title}]]</p>
+               
+               <p class="fs-8 fw-bold text-black">
+         &#8377; [[${p.discountPrice}]]   <span class="fs-6 text-decoration-line-through text-black"><br>[[${p.price}]]</span>
+          <span class="fs-6 text-success fa-2x"> [[${p.discount}]]% off</span>
+        </p>
+              </a>
+               
+               
+            </div>
+          </div>
+        </div>
+        
+    </div>
+   </div>
+   
+    <!-- End latest product module -->
+   
+ </div>
+ 
+</div>
+</div>
+
+  <!-- End Main Page module1 -->
+  <!-- Start Main Page module2 -->
+  
+<!-- TVs & Appliances Section -->
+<div class="bg-product">
+  <div class="electronics">
+    <h2 class="text-center fs-2 fw-bold">🛍️ ACs & Appliances</h2>
+   
+      <div class="slider-container" id="slider" style="margin-left: 20px;">
+        <div class="col-md-3 " th:each="a : ${ACProducts}">
+          <div class="card shadow-sm mb-4 bg-white" style="height: 320px;">
+            <div class="card-body gradient-border"style="background-image: url('/img/product_bg_img/AC-bg.png'); 
+                 background-size: cover; 
+                  background-position: center; 
+                  padding: 20px; 
+                  display: inline-block; 
+                  border-radius: 5px;">
+              <a th:href="@{'/product/' + ${a.id}}" class="text-decoration-none">
+             
+             <img th:src="@{'/img/product_img/' + ${a.image}}" 
+                     alt="[[${a.title}]]" 
+                     class=" mt-2" height="100px" width="340px;" style="border: 4px solid pink">
+              </a>
+              
+             <p class="font-style text-white  mt-5" style="color: black;overflow: hidden;width: 100%;height: 57px;font-size: 14px">[[${a.title}]]</p>
+       
+        <p class="fs-5 fw-bold text-black">
+         &#8377; [[${a.discountPrice}]]<span class="fs-6 text-decoration-line-through text-secondry"> [[${a.price}]]</span>
+          <span class="fs-5 text-white fa-2x">[[${a.discount}]]% off</span>
+        </p>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+  <div class="bg-product">
+  <div class="electronics">
+    <h2 class="text-center fs-2 fw-bold">📺 TVs & Appliances</h2>
+   
+      <div class="slider-container" id="slider" style="margin-left: 20px;">
+        <div class="col-md-3 " th:each="s : ${tvProducts}">
+          <div class="card shadow-sm mb-4 " style="height: 320px;width: px">
+            <div class="card-body "style="background-image: url('/img/product_bg_img/tv-bg.png'); 
+                 background-size: cover; 
+                  background-position: center; 
+                  padding: 20px; 
+                  display: inline-block; 
+                  border-radius: 5px;">
+              <a th:href="@{'/product/' + ${s.id}}" class="text-decoration-none">
+             
+             <img th:src="@{'/img/product_img/' + ${s.image}}" 
+                     alt="[[${s.title}]]" 
+                     class="gradient-border" height="170px" width="260px;" style="margin-left: 40px;border: 1px solid red;">
+              </a>
+              
+             <p class="font-style text-white  mt-2" style="color: black;overflow: hidden;width: 100%;height: 40px;font-size: 14px">[[${s.title}]]</p>
+       
+        <p class="fs-3 fw-bold text-black p-2" >
+         &#8377; [[${s.discountPrice}]]<span class="fs-6 text-decoration-line-through text-secondry">[[${s.price}]]</span>
+          <span class="fs-5 text-white fa-2x">[[${s.discount}]]% off</span>
+        </p>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="bg-product">
+  <div class="electronics">
+    <h2 class="text-center fs-2 fw-bold">🛍️ Fridge & Appliances</h2>
+   
+      <div class="slider-container" id="slider" style="margin-left: 20px;">
+        <div class="col-md-3 " th:each="f : ${FZProducts}">
+          <div class="card shadow-sm mb-4 bg-white" style="height: 320px;">
+            <div class="card-body gradient-border" style="background-image: url('/img/product_bg_img/frizz-bg.png'); 
+                 background-size: cover; 
+                  background-position: center; 
+                  padding: 20px; 
+                  display: inline-block; 
+                  border-radius: 5px;">
+              <a th:href="@{'/product/' + ${f.id}}" class="text-decoration-none">
+              
+                    <p class="font-style text-white " 
+                         style="display:inline-block; vertical-align:top; margin-top:100px; margin-left:15px; color:black; width:170px; height:82px; font-size:14px; overflow:hidden;">
+                         [[${f.title}]]
+                      </p>
+             
+                     <img th:src="@{'/img/product_img/' + ${f.image}}" 
+              alt="[[${s.title}]]" 
+              height="180px" width="95px" class="gradient-border"
+              style="display:inline-block; vertical-align:top; margin-top:40px;margin-left: 10px;">
+
+   
+        <p class="fs-5 fw-bold text-black" style="margin-left: 30px">
+         &#8377; [[${f.discountPrice}]]<span class="fs-6 text-decoration-line-through text-secondry"><br>[[${f.price}]]</span>
+          <span class="fs-5 text-white fa-2x">[[${f.discount}]]% off</span>
+        </p>
+         </a>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+  
+  </div>
+  <!-- End Main Page module2 -->
+  
+    </section>
+     
+</body>
+</html>

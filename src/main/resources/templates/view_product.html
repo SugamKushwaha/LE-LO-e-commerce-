@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+rel="stylesheet" 
+integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" 
+crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+</head>
+<body>
+
+  <section>
+  
+  
+<div class="bg-product">
+   <div class="container  bg-white  mb-2" style="margin-top: 60px;margin-bottom: 88px;width:1800px;">
+   
+     <div class="  p-3" >
+      <div class="row ">
+      <!-- Scrollable modal -->
+        <th:block th:if="${session.succMsg}">
+             	<p class="text-success fw-bold text-center  alert-success" role="alert">[[${session.succMsg}]]</p>
+                 <span th:text="${@commonServiceImpl.removeSessionMessage()}"></span> 
+             </th:block>
+              
+              <th:block th:if="${session.errorMsg}">
+              <p class="text-success fw-bold text-center alert alert-success" role="alert">[[${session.errorMsg}]]</p>
+                <span th:text="${@commonServiceImpl.removeSessionMessage()}"></span>
+              </th:block>
+       
+      
+     <div class="card  mt-2 bg-white text-end" style="display:inline-block;vertical-align:top;vertical-align:top;width: 380px;height: 505px;">
+        
+        
+      <!-- For TV -->
+<img th:if="${product.category == 'TVs'}"
+     th:src="@{'/img/product_img/'+${product.image}}"
+     alt="[[${product.title}]]"
+     width="360px" height="260px"
+     style="border-radius: 10px; padding: 10px; margin-top: 100px;">
+
+<!-- For AC -->
+<img th:if="${product.category == 'AC'}"
+     th:src="@{'/img/product_img/'+${product.image}}"
+     alt="[[${product.title}]]"
+     width="360px" height="130px"
+     style="border-radius: 10px; padding: 10px; margin-top: 100px; margin-right: 20px;">
+     
+  <!-- for fridge -->
+<img th:if="${product.category == 'FZ'}"
+     th:src="@{'/img/product_img/'+${product.image}}"
+     alt="[[${product.title}]]"
+     width="180px" height="380px"
+     class="img"
+     style="border-radius: 10px; padding: 10px; margin-top: 20px; margin-right: 80px;">
+
+<!-- For all other products -->
+<img th:unless="${product.category == 'TVs' or product.category == 'AC'or product.category == 'FZ'}"
+     th:src="@{'/img/product_img/'+${product.image}}"
+     alt="[[${product.title}]]"
+     width="320px" height="390px"
+     style="border-radius: 1px; padding: 25px; margin-top: 10px;margin-left: 0px;margin-right: 20px">
+      
+      
+     
+        
+         <div class="p-3" style="padding-left:5px; position: absolute; bottom: 30px; left: 10px; right: 10px;">
+        <th:block th:if="${product.stock>0}">
+            <th:block th:if="${user==null}">
+                <a href="/signin" class="btn btn-danger col-12">Add To Cart</a>
+            </th:block>
+            <th:block th:unless="${user==null}">
+                <a th:href="@{'/user/addCart?pid='+${product.id}+'&uid='+${user.id}}" 
+                   class="btn btn-danger col-12">Add To Cart</a>
+            </th:block>
+        </th:block>
+
+        <th:block th:unless="${product.stock>0}">
+            <a href="login.jsp" class="btn btn-warning col-12">Out Of Stock</a>
+        </th:block>
+    </div>
+       
+      </div>
+      
+      
+      
+       
+      <div class="card  flexible-container bg-light p-2" style="margin-left: 3px; margin-top: 10px;display:inline-block;vertical-align:top;vertical-align:top;width: 850px;height: 500px;">
+      
+      <p class=""style="font-family: Arial, Helvetica, sans-serif;color: black;width: 100%;height: 95px;font-family: 20px;font-weight: 12px;"><span class="fw-bold">Product Details :</span><br>[[${product.title}]]</p>
+       <p class="fs-5 fw-bold">
+          <span class="text-success">Price</span> :<br>&#8377;
+          [[${product.discountPrice}]]<span class="fs-6 text-decoration-line-through text-secondry">[[${product.price}]]</span>
+          <span class="fs-6 text-success fa-2x">[[${product.discount}]]% off</span>
+        </p>
+        <p class="fs-7 "style="color: black;overflow: hidden;width: 100%;height: 100px" >
+          <span class="fw-bold fs-7" style="font-family: 'Roboto', sans-serif"><i class="fa-solid fa-circle text-success fa-0x"></i> Highlights :</span><br><span class="" style=" font-family: 'Montserrat', sans-serif;font-size: 13px;">[[${product.description}]]</span>
+        </p>
+        <p class="fs-7">
+          <span class="fw-bold fs-6" style="font-family: 'Roboto', sans-serif">About Product  :</span><br><span class="font-style">Product :</span>
+          <th:block th:if="${product.stock>0}">
+          <span class="badge bg-success" style="font-size: 13px;">Available</span>
+          </th:block>
+          <th:block th:unless="${product.stock>0}">
+           <span class="badge bg-warning">Out Of Stock</span>
+          </th:block>
+         
+          
+          <br><span class="font-style">Category :</span> [[${product.category}]]<br> <span class="style">Policy</span> : 7 Days Replacement & Return
+          
+         <div class="row pb-2">
+          <div class="col-md-4 text-success text-center" >
+           <i class="fa-solid fa-money-bill fa-3x"></i>
+           <p>Cash on Delivery</p>
+          </div>
+          
+           <div class="col-md-4 text-danger text-center">
+          <i class="fa-solid fa-rotate-left fa-3x"></i>
+           <p>Return Availble</p>
+          </div>
+          
+           <div class="col-md-4 text-secondary text-center ">
+           <i class="fa-solid fa-truck fa-3x"></i>
+           <p>Shopping</p>
+          </div>
+        </div>
+        
+       </div>
+       
+       
+       
+       
+      
+     </div>
+    </div>
+   </div>
+ 
+ <div class="lower-poducts">
+  <h2 class="text-center fw-bold">🛍️ Featured Products</h2>
+
+ 
+
+    <div class="slider-container " id="slider">
+    <!-- <div class="product-card bg-white" >
+      
+       <img class=""  th:src="@{'/img/product_img/'+${product.image}}" alt="Product 2" style="width: 190px; height: 130px; border-radius: 10px; padding: 10px;margin-right: 10px;margin-top: 20px">
+    
+     <p class=" mt-0" style="color: black;overflow: hidden;width: 100%;height: 34px;font-size: 13px">[[${product.title}]]</p>
+       <p class="fs-6 fw-bold" style="margin-top: 20px">
+         &#8377; [[${product.discountPrice}]]<span class=" text-decoration-line-through text-secondry" style="font-size: 14px"><br>[[${product.price}]]</span>
+          <span class="fs-6 text-success fa-2x">[[${product.discount}]]% off</span>
+        </p>
+      
+    </div> -->
+
+    <div class="product-card bg-white"  th:each="p : ${sameCategoryProducts}">
+       <a  th:href="@{'/product/'+${p.id}}" class="text-decoration-none">
+       
+       <img th:if="${p.category == 'TVs'}" th:src="@{'/img/product_img/'+${p.image}}"
+     alt="[[${p.title}]]"
+     style="width: 190px; height: 130px; border-radius: 10px; padding: 10px;margin-right: 10px;margin-top: 20px">
+       
+
+<!-- For AC -->
+  <img th:if="${p.category == 'AC'}" th:src="@{'/img/product_img/'+${p.image}}"
+     alt="[[${p.title}]]"
+     style="width: 195px; height: 80px; border-radius: 10px; padding: 15px;margin-right: 10px;margin-top: 40px">
+       
+
+  <!-- for fridge -->
+       <img th:if="${p.category == 'FZ'}" th:src="@{'/img/product_img/'+${p.image}}"
+     alt="[[${p.title}]]"
+     style="width: 120px; height: 215px; border-radius: 10px; padding: 15px;margin-right: 10px;margin-top: 20px">
+       
+      
+        
+        <!-- For all other products -->
+<img th:unless="${p.category == 'TVs' or p.category == 'AC' or p.category == 'FZ'}"
+     th:src="@{'/img/product_img/'+${p.image}}"
+     alt="[[${p.title}]]"
+     style="width: 157px; height: 183px; object-fit: cover; border-radius: 5px; padding: 15px; margin-top: 10px; margin-right: 20px;">
+      
+        
+        <p class="product-bg-text mt-0" style="color: black;overflow: hidden;width: 100%;height: 34px;font-size: 13px">[[${p.title}]]</p>
+       
+        <p class="fs-6 fw-bold text-black" style="margin-top: 20px">
+         &#8377; [[${p.discountPrice}]]<span class=" text-decoration-line-through text-secondry" style="font-size: 14px"><br>[[${p.price}]]</span>
+          <span class="fs-6 text-success fa-2x">[[${p.discount}]]% off</span>
+        </p>
+        </a>
+    </div>
+    
+  </div>
+
+</div>
+  
+
+  
+ </div>
+  </section>
+  
+
+
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+       crossorigin="anonymous"></script>
+</body>
+</html>

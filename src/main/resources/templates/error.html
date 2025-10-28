@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+    <section>
+       <div class="error-bg ">
+       <div class="container p-5 mt-5  ">
+        <div class="row">
+         <div class="col-md-6 p-5 text-center offset-md-3">
+         
+           <img alt=""  th:src="@{/img/error_img/error.png}" width="200px" height="200px">
+           <h2 >Oops! Something new wrong</h2>
+           <p class="text-col">We're having trouble loading the page you requested.</p>
+           
+           <div class="mt-5 text-col">
+            <p>We’re sorry, but an unexpected error occurred.Please try again later.<br>We’re working to fix it as soon as possible.</p>
+           </div>
+            
+           <div style="display: flex; gap: 15px;margin-left: 135px;margin-top: 50px;">
+             <a class="error-a card-sh text-col nav-col text-white text-decoration-none" href="#" style="width: 130px;height: 35px;padding: 5px">TRY AGAIN</a>
+             <a class="error-b card-sh text-col bg-product text-decoration-none" href="/" style="width: 130px;height: 35px;padding: 5px;">Go To Home </a>
+           </div>
+            
+         </div>
+         </div>
+         <div style="margin-left: 520px;">
+               <p>Support support @LE-LO.com</p>
+          </div>
+       </div>
+           
+       </div>
+    </section>
+
+</body>
+</html>

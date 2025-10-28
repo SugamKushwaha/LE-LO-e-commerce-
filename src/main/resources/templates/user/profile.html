@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+    <section>
+    <div class="bg-light">
+    
+    <div class="my-container gradient-border" style="margin-left: 800px;margin-top: 135px;">
+   <img th:src="@{/img/main_img/productadd.png}" width="500px" height="400px" style="border-radius:10px;">
+  </div>
+    
+      <div class="container mt-5 p-5 ">
+      
+       
+      
+       <div class="container text-center card-sh bg-light" 
+      style="width: 450px;margin-left: 50px;padding: 10px;">
+      <img alt=""  th:src="@{/img/profile_img/profile_logo.png}" width="60px"height="50px">Hello,<span class="fw-bold fs-5"> [[${user.name}]]</span>
+     </div>
+      
+        
+       <!--  <div class="row m-3 card-sh bg-light" style="margin: 100px;" > -->
+         <div class=" container card-sh bg-product " style="display:inline-block;width: 600px;margin-left: 0px;margin-top: 20px;vertical-align:top;margin-top:20px;">
+        <!--   <div class="card">
+           <div class="card-body"> -->
+             <p class=" fs-3 text-center fw-bold">My Profile</p>
+             <hr>
+             <th:block th:if="${session.succMsg}">
+             	<p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
+                 <span th:text="${@commonServiceImpl.removeSessionMessage()}"></span>
+              </th:block>
+              
+              <th:block th:if="${session.errorMsg}">
+             	<p class="text-danger text-center fw-bold">[[${session.errorMsg}]]</p>
+                 <span th:text="${@commonServiceImpl.removeSessionMessage()}"></span>
+              </th:block>
+              <div class="text-center">
+              
+                <img alt="" th:src="@{'../img/profile_img/'+${user.profileImage}}" class="border p-1"  style="width:130px; height:130px; border-radius:50%;">
+            </div>
+            <div class="col-md-6 offset-md-2 mt-2 bg-product">
+             <table class=" table-borderless bg-product" style="width: 400px;height: 500px;">
+              <tbody>
+                 <form action="/user/update-profile" method="post" enctype="multipart/form-data">
+                  <tr>
+                    <th scope="row">Name</th> 
+                    <td><input type="text" name="name" class="form-control" th:value="${user.name}"></td> 
+                  </tr>
+                  <tr>
+                    <th scope="row">Mobile no</th> 
+                    <td><input type="text" name="mobileNumber" class="form-control" th:value="${user.mobileNumber}"></td> 
+                  </tr>
+                  <tr>
+                    <th scope="row">Address</th> 
+                    <td><input type="text" name="address" class="form-control" th:value="${user.address}"></td> 
+                  </tr>
+                  
+                  <tr>
+                    <th scope="row">City</th> 
+                    <td><input type="text" name="city" class="form-control" th:value="${user.city}"></td> 
+                  </tr>
+                  <tr>
+                    <th scope="row">State</th> 
+                    <td><input type="text" name="state" class="form-control" th:value="${user.state}"></td> 
+                  </tr>
+                  <tr>
+                    <th scope="row">Pincode</th> 
+                    <td><input type="text" name="pincode" class="form-control" th:value="${user.pincode}"></td> 
+                  </tr>
+                  <tr>
+                    <th scope="row">Image</th> 
+                    <td><input type="file" name="img" class="form-control" ></td> 
+                  </tr>
+                  <tr>
+                    <th scope="row"><!-- Account Status --></th> 
+                    <td><input type="hidden" name="" class="form-control" th:value="${user.isEnable}" readonly><input type="hidden" th:value="${user.id}" name="id"></td> 
+                    
+                  </tr>
+                   <tr>
+                   <th></th>
+                    <td>
+                      <button  class="text-center text-white btn btn-sm btn-primary"style="width: 200px;height: 40px">update</button>
+                    </td>
+                   </tr>
+                 </form>
+              </tbody>
+             </table>
+            </div>
+           </div>
+           
+           
+              <div class="container card-sh bg-product "style="display:inline-block;width: 600px;margin-left: 10px;margin-top: 20px;vertical-align:top;margin-top:455px;">
+        
+          <p class=" text-center fw-bold fs-3 ">Change Password</p>
+                <hr>
+              
+                  <div class="col-md-6 offset-md-3 ">
+                    <table class=" table-borderless bg-product" style="width: 400px;height: 200px;margin-left:0px;">
+                   <tbody>
+                     <form action="/user/change-password" method="post">
+                       <tr>
+                       <th scope="row">Current password</th>
+                       <td><input type="text" name="currentPassword" class="form-control"></td>
+                     </tr>
+                     <tr>
+                       <th scope="row">New password</th>
+                       <td><input type="text" name="newPassword" class="form-control"></td>
+                     </tr>
+                     <tr>
+                       <th scope="row">Confirm password</th>
+                       <td><input type="text" name="confirmPassword" class="form-control"></td>
+                     </tr>
+                      <tr>
+                   <th></th>
+                    <td>
+                      <button type="submit"  class="text-center text-white btn btn-sm btn-primary"style="width: 200px;height: 40px">update</button>
+                    </td>
+                   </tr>
+                     </form>
+                   </tbody>
+                  </table>
+                  </div>
+               </div>
+               
+               
+             </div>
+             
+          </div>
+       <!--  </div>
+       </div> -->
+    </section>
+
+</body>
+</html>
+

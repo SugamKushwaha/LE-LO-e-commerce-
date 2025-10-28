@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+  <section>
+     
+       <div class="container-fluid mt-5 p-3">
+       
+       <div class="row">
+        
+         <p class="text-center fs-3 fw-bold mt-2">All Products</p><hr>
+        
+        <a href="/admin/" class="text-decoration-none text-secondary"><i class="fa-solid fa-arrow-left"></i>Back</a>
+        
+        <th:block th:if="${session.succMsg}">
+             	<p class="text-success text-center fw-bold">[[${session.succMsg}]]</p>
+                 <span th:text="${@commonServiceImpl.removeSessionMessage()}"></span>
+              </th:block>
+              
+              <th:block th:if="${session.errorMsg}">
+             	<p class="text-success text-center fw-bold">[[${session.errorMsg}]]</p>
+                 <span th:text="${@commonServiceImpl.removeSessionMessage()}"></span>
+              </th:block>
+              
+              <div class="col-md-3 p-3"> 
+               
+                <form action="/admin/products" method="get">
+                 <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control" name="ch"  >
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-primary">Search</button>
+                  </div>
+                 </div>
+                </form>
+              </div>
+       
+         <!-- <div class="card card-sh">
+           <div class="card-header text-center">
+             <p class="fs-4">View Products</p>
+             
+            </div>
+            <div class="card-body"> -->
+               <table class="table table-bordered">
+           <thead class="table-light">
+             <tr>
+               <th scope="col">S no.</th>
+               <th scope="col">Image</th>
+               <th scope="col">Title</th>
+               <th scope="col">Category</th>
+               <th scope="col">Price</th>
+               <th scope="col">Discount</th>
+               <th scope="col">Discount Price</th>
+                <th scope="col">Status</th>
+               <th scope="col">Stock</th>
+               <th scope="col">Action</th>
+             </tr>
+           </thead>
+             <tbody>
+               <tr th:each="p,c:${products}">
+                 <th scope="row">[[${c.count}]]</th>
+                 <td><img th:src="@{'/img/product_img/'+${p.image}}" width="50px" height="50px" style="border-radius: 10px;"></td>
+                 <td>[[${p.title}]]</td>
+                 <td>[[${p.category}]]</td>
+                 <td>&#8377; [[${p.price}]]</td>
+                 <td>[[${p.discount}]] %</td>
+                 <td>&#8377; [[${p.discountPrice}]]</td>
+                 <td>[[${p.isActive}]]</td>
+                 <td>[[${p.stock}]]</td>
+                 <td><a th:href="@{'/admin/editProduct/'+${p.id}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+                     <a th:href="@{'/admin/deleteProduct/'+${p.id}}" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i>Delete</a>
+                 </td>
+               </tr>
+           
+             </tbody>
+           </table>
+          </div>
+         </div>
+       <!--   </div>
+       </div> -->
+  </section>
+
+</body>
+</html>

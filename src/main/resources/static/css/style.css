@@ -1,0 +1,357 @@
+@charset "UTF-8";
+
+.navbar .dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* remove bootstrap flicker gap */
+}
+
+/* Flipkart-style mega dropdown */
+.dropdown-menu {
+  width: 450px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  background-color: white;
+    
+  animation: dropdownFade 0.3s ease;
+}
+
+/* Grid layout inside dropdown */
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.dropdown-grid a {
+  display: block;
+  color: black;
+  
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-grid a:hover {
+  background-color: #f1f1f1;
+  color: #007bff;
+}
+
+/* Smooth fade animation */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Make the dropdown appear on hover */
+.user-dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* remove default bootstrap gap */
+  animation: fadeDropdown 0.3s ease;
+}
+
+/* Style the dropdown menu */
+.user-dropdown .dropdown-menu {
+  display: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  min-width: 160px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Smooth fade animation */
+@keyframes fadeDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-dropdown .dropdown-item {
+  padding: 8px 16px;
+  font-size: 14px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.user-dropdown .dropdown-item:hover {
+  background-color: #f1f1f1;
+  color: #007bff;
+}
+
+
+ .my-container {
+  text-align: center;
+  line-height: 200px;
+  position: absolute; /* default: flows with page */
+}
+ .gradient-border {
+  display: inline-block;
+  padding: 2px;
+  border-radius: 2px;
+  background: linear-gradient(270deg, gray, #ff7300, white, #00ffd5, #002bff, #7a00ff, #ff00c8);
+  background-size: 1600% 1600%;
+  animation: moveGradient 6s ease infinite;
+}
+@keyframes moveGradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+.gradient-border img {
+  display:block;
+  border-radius:10px;
+}
+ 
+ .img {
+    image-rendering: auto;      /* default */
+    image-rendering: crisp-edges; /* sharp for pixel-art */
+    image-rendering: high-quality; /* modern browsers */
+}
+ 
+ 
+ 
+ /* Make all product images uniform */
+.product-img {
+  width: 100%;
+  height: 350px;              /* you can adjust as needed */
+  object-fit: cover;          /* ensures no stretching — crops neatly */
+  border-radius: 8px;         /* optional rounded corners */
+  padding: 10px;
+}
+
+/* For smaller featured products */
+.featured-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  padding: 10px;
+}
+ 
+.flexible-container {
+  min-height: 300px; /* minimum height */
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* stack child elements vertically */
+  justify-content: flex-start; /* top-aligned */
+}
+
+.font-style{
+	font-family: 'Roboto', sans-serif
+}
+
+.nav-col{
+	background-color:#251f52;
+	color: white;
+}
+.nav-down-col{
+	background-color: #32363a;
+}
+.text-col{
+	color: #808080;
+}
+.card-sh{
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.3);
+}
+.cat-div{
+	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+.card-height{
+  height: 250px;
+  width: 190px;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: hidden; 
+  color: black;
+  
+}
+.card-img:hover {
+  height: 155px;
+  width: 135px;
+ cursor: pointer; 
+ transition: all 0.5s ease;
+}
+.productTxt-height{
+  height: 30px;
+  overflow: hidden; 
+  
+}
+.productImg-height:hover{
+	height: 170px;
+  width: 160px;
+ cursor: pointer; 
+ transition: all 0.5s ease;
+}
+.view-img{
+	border: 1px solid white;
+}
+.cart-redious{
+  border-radius: 10px;
+}
+
+.text-hov{
+	text-decoration:none;
+	
+}
+
+
+.text-hov:hover{
+	text-decoration:underline;
+	 cursor: pointer; 
+ transition: all 0.5s ease;
+   color: #ddd;
+}
+
+.bg-product {
+  background-color: #f1f3f6;
+  /*background-color: #efefef;*/
+ 
+}
+.product-col{
+	background-color: #f8f8f8;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, blue,skyblue,skyblue,violet,violet,navy);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 55px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  /* blue → violet gradient */
+  background: linear-gradient(90deg, #4cc9f0, #4361ee, #7209b7, #b5179e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* subtle 3D depth */
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.4),
+    0px 0px 10px rgba(114,9,183,0.3);
+}
+.instagram-text {
+  font-size: 25px;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+
+  /* Instagram gradient */
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* optional glow for style */
+  text-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+}
+.twitter-text{
+	font-size: 25px;
+  font-weight: 800;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(90deg, #1DA1F2, #0d8de1, #0a74b1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btn-primary{
+	background-color:#1d2f5a;
+}
+
+.list-group-item.active {
+     background-color:#1d2f5a; /* your desired fill color */
+    color: white;              /* text color */
+    border-color: blue;     /* optional: border color to match */
+}
+.search-col{
+	background-color: #802a78;
+}
+.error-bg{
+	background-color: #e1e4e8;
+}
+.error-a:hover{
+	background-color:#004040;
+	 cursor: pointer; 
+ transition: all 0.5s ease;
+}
+.error-b:hover{
+	background-color:#408080;
+	color:white;
+	 cursor: pointer; 
+ transition: all 0.9s ease;
+}
+
+
+ .lower-poducts{
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+ 
+   .lower-poducts {
+    margin-top: 30px;
+  }
+
+  .lower-poducts h2 {
+    margin-bottom: 15px;
+  }
+
+  /* === Slider container === */
+  .slider-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 15px;
+    padding-bottom: 10px;
+  }
+
+  /* Hide scrollbar (optional) */
+  .slider-container::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  /* === Product Card === */
+  
+ 
+  .product-card {
+    flex: 0 0 auto; /* Prevent shrinking */
+    width: 200px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .product-card:hover {
+    transform: scale(1.05);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 70%;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+  }
+
+  .product-card h4 {
+    margin: 10px 0 5px;
+  }
+
+  .product-card p {
+    margin-bottom: 10px;
+  }
