@@ -27,6 +27,8 @@
 
 # # Run the app
 # CMD ["java", "-jar", "app.jar"]
+
+
 # Use stable Java 21 image
 FROM eclipse-temurin:21-jdk-jammy
 
@@ -37,6 +39,9 @@ WORKDIR /app
 COPY mvnw .
 COPY .mvn .mvn
 COPY pom.xml .
+
+# ✅ Make mvnw executable
+RUN chmod +x mvnw
 
 # Download dependencies (cache layer)
 RUN ./mvnw dependency:go-offline -B
