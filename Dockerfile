@@ -27,7 +27,6 @@
 
 # # Run the app
 # CMD ["java", "-jar", "app.jar"]
-
 # Use stable Java 21 image
 FROM eclipse-temurin:21-jdk-jammy
 
@@ -48,9 +47,12 @@ COPY src ./src
 # Build the app
 RUN ./mvnw clean package -DskipTests
 
-# Expose dynamic port
+# Copy final jar to root
+RUN cp target/*.jar app.jar
+
+# Expose dynamic port (for Render or Docker)
 ENV PORT=8080
 EXPOSE 8080
 
 # Run the app
-CMD ["java", "-jar", "target/*.jar"]
+CMD ["java", "-jar", "app.jar"]
